@@ -1,0 +1,25 @@
+//
+   Created with JetBrains WebStorm.
+   User: mlieberman
+   Date: 3/27/13
+   Time: 5:56 PM
+   To change this template use File | Settings | File Templates.
+
+div(ng-controller="MinecraftServerCtrl")
+    .container(fade-in='fade-in')
+        #hero-container.container
+            .hero-unit
+                h1 Craftular
+                p Front Page for Craftular
+                br
+                p
+                    small
+                        | Minecraft server wrapper written in Node and Angular
+                br
+                .pull-left
+                    section.clearfix
+
+                            a.btn.btn-large.btn-primary(ng-click="startMinecraftServer()") Start Server
+
+        div(class='span12', ng-repeat="line in console")
+            p {{line}}
