@@ -19,7 +19,11 @@ div(ng-controller="MinecraftServerCtrl")
                 .pull-left
                     section.clearfix
 
-                            a.btn.btn-large.btn-primary(ng-click="startMinecraftServer()") Start Server
+                            a.btn.btn-large.btn-primary(ng-show="!running", ng-click="startMinecraftServer()") Start Server
+                            a.btn.btn-large.btn-danger(ng-show="running", ng-click="stopMinecraftServer()") Stop Server
 
+        div(ng-show="running", class='span12')
+            p Console Command
+            input(, type="text", ng-model="command", ui-keypress="{enter: 'consoleCommand(command)'}")
         div(class='span12', ng-repeat="line in console")
             p {{line}}

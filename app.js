@@ -180,8 +180,19 @@ io.sockets.on('connection', function(socket){
       }
     });
     minecraftServer.on('exit', function(){
-      minecraftserver = null;
-      io.sockets.emit('status', "Shutdown Server");
-    })
+      minecraftServer = null;
+    });
+  });
+  socket.on('stopServer', function(){
+    minecraftServer.kill('SIGINT');
+    io.sockets.emit('status', "Stopping Server");
+  });
+  socket.on('command', function(data){
+    if(minecraftServer) {
+      io.sockets.emit('console', "Command: " + data.command);
+      minecraftServer.stdin.write(data.command + "\r");
+    } else{
+
+    }
   });
 });
